@@ -1,19 +1,26 @@
 language: node_js
 before_install:
-  # Repo for Yarn
-  - sudo apt-key adv --keyserver pgp.mit.edu --recv D101F7899D41F3C3
-  - echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-  - sudo apt-get update -qq
-  - sudo apt-get install -y -qq yarn
+- sudo apt-key adv --keyserver pgp.mit.edu --recv D101F7899D41F3C3
+- echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+- sudo apt-get update -qq
+- sudo apt-get install -y -qq yarn
+- travis_retry gem install bitballoon
 install:
-  - yarn install
+- yarn install
 cache:
   directories:
   - $HOME/.yarn-cache
 node_js:
-  - "6"
-  - "5"
-  - "4"
+- '6'
+- '5'
+script:
+- npm run build
 after_success:
-  # Send coverage data to coveralls.
-  - npm run lint
+- bitballoon deploy dist --access-token=$BB_ACCESS_TOKEN --site-id=$BB_SITE_ID
+branches:
+  only:
+  - master
+env:
+  global:
+  - secure: iI5C00M98867dKPJ9+0aNZom7r8i6VnkPDIIJAJ4hDEQHnr2ZUEiblaz08tz6nGIgwuyzElmJQVhnIKfCjm+h/xCZlIAcAijvJFTYwmpxLt30GZIkhOGo0GscMDEdfeZB5vmoZk7nSdVtSZhLYAl0Luay06s+SnxjV+7YvFyyoXYHFC0DKhVjoB5b0vY+slnXYh0VG0T8DzfidERdPwJjQC9/egZ9qQhRG9DX+qCGf0OFhaNODUUaaMnf/Hj293PNuOVgtf+Dd9MTo081Z7H3U11X75Grr2PEdSFI5JsvCDzbib0+qQsN5Z8uOnCQeYlEyS8Zjj3yORTL0Nws2R6rwCI8YJ6SHDV9kAMhAlhwEj9EGKKIfpHxQJwvqm+h/dz68FIBIQaW+y4vF09W7xcnKnedhm/RpGyLy86/KogJ57z87+MhuPYCXXzIvDNtpVii60vmjUrAYS7p+l3o6yp0TU9fAFJx1WmkmBJ91FQ25Q6Kx7+9CDO6j1ccbxPh8l6GptHFha4Xt1y/64e+sfoMf7aohl2/iwJrRPYy3oc8+8uJyENkRqeHlN2jJqxa8KxaVIv3wz3Mxsgs7NfJiHHq9+CNGg3loY6qGEIrW/m12N3wqa/bvuSrIgT2tUDt/LDzwZ/BvlBew8WY+RIOT5y785yOyMWIxeNPVi4dwIUW8U=
+  - secure: jBYCn28Rf7w5LXNUJe4VEnIt3K3thwR2e0ClK3NyGncybJ8V1dEp36Ii6YVffaD6nEQc6i0xr2dTztG2+lV+kBfEw2ecdbwy54Kl1H0s8+XRUFSNBL0p4awQ/4A2skKKPVTMWXHeFjzI3gFs7VlFx8VC+s/G0mrDxBWaXUZXSFeLayD+aXhFfhyT4p8voUod5xzdW7r/mSryB7bDvkYxoSh1IQ9qlOP127jGo5l7a+UILFakNN5CJz4GFHUmlKSk7aApO7VuWVYo/ZzQU6ULEuI3r4K5uVfmLwuc5kwRedkeLzk6UkPrs/EaSGmQ77C+M78jjVqBrcwVHEMkEbJ9WMMYQsuMvPRUWaHgsunTsN/UXxe8GGQLGStHeo014fPHX0Ca8tlMbUJLNtC0XCOGPY8KjGIVsEgHpL9leMddvXvcXMEJeeQiOUwj3ssvXTZgQsY2aR3ASmh3PXr+YPxHZrH2WmbSI0C3xAKmLrnb+wd2rmi1Y6QBg9/ctUTV31FG2wgVJ/Z7T3QlbTsj+ReM5gEy/CWgOQqqTG/jluz9jURjkeEqadncgumnFRB0vr340RXWAuS8iC3jml/JLd7+wSd9/S7RUp2CF4afhMXE6/r/JyD9CqO92Zm8a5b2KHyoDSFwn1k5CcDn8ZjtYEqqTKOqt00RT1/MoVEfjgBaWJw=

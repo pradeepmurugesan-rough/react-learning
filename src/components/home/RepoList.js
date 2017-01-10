@@ -3,7 +3,7 @@ import RepoListItem from './RepoListItem';
 
 class RepoList extends React.Component {
   static propTypes = {
-    repos: PropTypes.object.isRequired
+    repos: PropTypes.array.isRequired
   }
 
   constructor(props) {

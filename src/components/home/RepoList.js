@@ -14,11 +14,11 @@ class RepoList extends React.Component {
     return (
       <div>
         <h4>Repositories:</h4>
-        <ul>
+        <div>
           {this.props.repos.map( repo =>
             <RepoListItem repo={repo} key={repo.name}/>
           )}
-        </ul>
+        </div>
       </div>
     );
   }

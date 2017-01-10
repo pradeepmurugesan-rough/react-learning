@@ -12,9 +12,15 @@ class RepoListItem extends React.Component {
 
   render() {
     return (
-      <li>
-        {this.props.repo.name}
-      </li>
+      <div className="panel panel-info">
+        <div className="panel-heading">
+          {this.props.repo.name}
+          <a href={this.props.repo.html_url} target="_blank"><span className="pr glyphicon glyphicon-new-window"/> </a>
+        </div>
+        <div className="panel-body">
+          <span className="glyphicon glyphicon-star"> {this.props.repo.stargazers_count} </span>
+        </div>
+      </div>
     );
   }
 }

@@ -8,6 +8,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { syncHistoryWithStore } from 'react-router-redux';
 import '../node_modules/toastr/build/toastr.min.css';
 import 'react-block-ui/style.css';
+import './styles/style.css';
 
 const store = configureStore();
 

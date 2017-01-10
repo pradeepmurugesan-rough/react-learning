@@ -65,12 +65,9 @@ class AuthorForm extends React.Component {
     return (
       <div>
         <BlockUi tag="div" blocking={this.state.blocking}>
-          <form role="form">
+          <form role="form" className="author-form">
             <div className="form-group">
-              <label htmlFor="authorname">
-                Github username
-              </label>
-              <input placeholder="Enter your github username" type="text" className="form-control" onChange={this.onAuthorChange} id="authorname" />
+              <input placeholder="Github username" type="text" className="form-control mr5" onChange={this.onAuthorChange} id="authorname" />
             </div>
 
             <button type="submit" className="btn btn-success" onClick={this.getRepos}>

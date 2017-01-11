@@ -11,11 +11,27 @@ class UserProfile extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        User name is : {this.props.user ? this.props.user.name : "Not known"}
-      </div>
-    );
+    return this.props.user ?
+     (
+       <div className="row">
+         <div className="col-md-12">
+           <div className="row">
+             <div className="col-md-3">
+               <img src={this.props.user.avatar_url + "&s=200"}/>
+             </div>
+             <div className="col-md-9">
+               <p>{this.props.user.name}</p>
+               <p>{this.props.user.company}</p>
+               <p>{this.props.user.location}</p>
+               <p>{this.props.user.email}</p>
+               <p>Public Repos: {this.props.user.public_repos}</p>
+               <p>Joined on: {this.props.user.created_at}</p>
+             </div>
+           </div>
+         </div>
+       </div>
+    )
+    : null;
   }
 }
 

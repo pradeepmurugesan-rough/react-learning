@@ -5,12 +5,14 @@ import * as actions from '../../actions/home/HomeActions';
 import RepoList from './RepoList';
 import toastr from 'toastr';
 import BlockUi from 'react-block-ui';
+import UserProfile from '../profile/UserProfile';
 
 class AuthorForm extends React.Component {
 
   static propTypes = {
     actions: PropTypes.object,
-    repos: PropTypes.array
+    repos: PropTypes.array,
+    user: PropTypes.object
   }
 
   constructor(props) {
@@ -22,10 +24,12 @@ class AuthorForm extends React.Component {
       blocking: false
     };
     this.getRepos = this.getRepos.bind(this);
+    this.getUserProfile = this.getUserProfile.bind(this);
     this.onAuthorChange = this.onAuthorChange.bind(this);
     this.setBlocking = this.setBlocking.bind(this);
     this.actions = {};
     this.actions.getRepos = props.actions.getRepos;
+    this.actions.getUserProfile = props.actions.getUserProfile;
     this.repos = [];
   }
 
@@ -46,8 +50,21 @@ class AuthorForm extends React.Component {
         this.setBlocking(false);
         toastr.error("Error occurred while retrieving data");
       });
+    this.getUserProfile();
   }
 
+  getUserProfile() {
+    this.setBlocking(true);
+    this.actions.getUserProfile(this.state.author.name)
+      .then( () => {
+        this.setBlocking(false);
+        toastr.success("retrieved user data");
+      })
+      .catch( () => {
+        this.setBlocking(false);
+        toastr.error("Error occurred while retrieving user data");
+      });
+  }
 
   onAuthorChange(event) {
     const author = this.state.author;
@@ -60,6 +77,7 @@ class AuthorForm extends React.Component {
       return <RepoList repos={this.props.repos}/>;
     }
   }
+
 
   render() {
     return (
@@ -75,6 +93,7 @@ class AuthorForm extends React.Component {
             </button>
           </form>
         </BlockUi>
+        <UserProfile user={this.props.user}/>
         {this.renderRepositories()}
       </div>
     );
@@ -84,7 +103,8 @@ class AuthorForm extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    repos: state.homeReducer.repositories
+    repos: state.homeReducer.repositories,
+    user: state.homeReducer.user
   };
 }
 

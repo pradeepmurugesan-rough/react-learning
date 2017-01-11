@@ -10,9 +10,21 @@ export function getRepos(authorName) {
   };
 }
 
+export function getUserProfile(authorName) {
+  return (dispatch) => {
+    return Github.getUserProfile(authorName).then(user => {
+      dispatch(userProfileApiSuccess(user));
+    });
+  };
+}
+
 export function reposApiSuccess(repos) {
 
   return {type: 'GET_REPOS_SUCCESS', repos};
+}
+
+export function userProfileApiSuccess(user) {
+  return {type: 'GET_USER_SUCCESS', user};
 }
 
 

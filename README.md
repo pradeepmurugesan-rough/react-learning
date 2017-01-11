@@ -1,4 +1,4 @@
-# Github React demo
+# React-Redux Learning 
 
 [![Build Status](https://travis-ci.org/pradeepmurugesan/react-learning.svg?branch=master)](https://travis-ci.org/pradeepmurugesan/react-learning)
 
@@ -13,4 +13,6 @@ npm start
 
 will start the local dev server using the src folder and will watch for any changes.
 
+### demo
 
+The project is deployed in bit balloon through continuous delivery using Travis CI. You can access the demo @ http://react-github-demo.bitballoon.com/

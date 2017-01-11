@@ -7,6 +7,10 @@ export default function homeReducer(state = initialState.repos, action) {
       let newObj = {...state, repositories: action.repos};
       return newObj;
     }
+    case 'GET_USER_SUCCESS': {
+      let newObj = {...state, user: action.user};
+      return newObj;
+    }
     default:
       return state;
   }

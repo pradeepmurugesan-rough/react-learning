@@ -29,6 +29,7 @@ const exposedProperties = ['window', 'navigator', 'document'];
 
 global.document = jsdom('');
 global.window = document.defaultView;
+global.API_ENDPOINT = "http://localhost/";
 Object.keys(document.defaultView).forEach((property) => {
   if (typeof global[property] === 'undefined') {
     exposedProperties.push(property);

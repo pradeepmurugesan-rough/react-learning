@@ -42,7 +42,6 @@ describe('actions', () => {
       }});
 
       fetchMock.get("*", repos);
-
       return store.dispatch(HomeActions.getRepos("someauthor"))
         .then(() => {
           const actions = store.getActions();

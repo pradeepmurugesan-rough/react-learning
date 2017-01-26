@@ -2,13 +2,13 @@ class Github {
 
   static getAllRepos(username) {
     if(username) {
-      return fetch("https://api.github.com/users/"+ username +"/repos");
+      return fetch(API_ENDPOINT + "/users/" + username + "/repos");
     }
   }
 
   static getUserProfile(username) {
     if(username) {
-      return fetch("https://api.github.com/users/" + username)
+      return fetch(API_ENDPOINT + "/users/" + username)
         .then((response) => {
           return response.json();
       });

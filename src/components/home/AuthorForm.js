@@ -103,8 +103,8 @@ class AuthorForm extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    repos: state.homeReducer.repositories,
-    user: state.homeReducer.user
+    repos: state.repos,
+    user: state.user
   };
 }
 

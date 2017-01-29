@@ -1,10 +1,12 @@
 // Set up your root reducer here...
 import { combineReducers } from 'redux';
 import {routerReducer} from 'react-router-redux';
-import homeReducer from './homeReducer';
+import repo from './RepoReducer';
+import user from './UserReducer';
 
 const rootReducer = combineReducers({
-  homeReducer,
+  repos : repo,
+  user,
   routing: routerReducer
 });
 

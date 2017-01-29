@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react';
+import isEmpty from 'lodash.isempty';
 
 class UserProfile extends React.Component {
   static propTypes = {
@@ -11,7 +12,7 @@ class UserProfile extends React.Component {
   }
 
   render() {
-    return this.props.user ?
+    return !isEmpty(this.props.user) ?
      (
        <div className="row">
          <div className="col-md-12">
